@@ -6,29 +6,27 @@ import { pizzas } from '../utils/pizzas';
 
 const Home = () => {
   const { addToCart } = useCart();
-  
-  // Mostrar solo la primera pizza como en el Hito 5
-  const pizza = pizzas[0];
 
   return (
     <main>
       <Header />
       <section className="container py-4">
         <div className="row justify-content-center">
-          <div className="col-12 col-md-6 col-lg-4">
-            <CardPizza 
-              id={pizza.id}
-              nombre={pizza.nombre}
-              precio={pizza.precio}
-              ingredientes={pizza.ingredientes}
-              imagen={pizza.imagen}
-              onAddToCart={() => addToCart(pizza)}
-            />
-          </div>
+          {pizzas.map((pizza) => (
+            <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4" key={pizza.id}>
+              <CardPizza
+                nombre={pizza.nombre}
+                precio={pizza.precio}
+                ingredientes={pizza.ingredientes}
+                imagen={pizza.imagen}
+                onAddToCart={() => addToCart(pizza)}
+              />
+            </div>
+          ))}
         </div>
       </section>
     </main>
   );
-}
+};
 
-export default Home
+export default Home;
